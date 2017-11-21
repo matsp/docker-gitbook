@@ -1,8 +1,5 @@
 FROM node:alpine
 
-ENV GITBOOK_CLI_VERSION 2.3.2
-ENV GITBOOK_VERSION 3.2.3
-
 ARG USER=node
 ARG GROUP=node
 ENV HOME=/opt/gitbook
@@ -15,9 +12,9 @@ WORKDIR ${HOME}
 USER ${USER} 
 
 RUN set -ex \
-    && yarn global add gitbook-cli@${GITBOOK_CLI_VERSION}
+    && yarn global add gitbook-cli
 RUN set -ex \
-    && ${HOME}/.yarn/bin/gitbook fetch ${GITBOOK_VERSION}
+    && ${HOME}/.yarn/bin/gitbook update
 RUN set -ex \
     && npm cache clean -g --force \
     && npm cache clean --force \
